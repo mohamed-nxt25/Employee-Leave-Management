@@ -1,0 +1,149 @@
+@host = http://localhost:5000
+
+### STATUS
+GET {{host}}/api/status
+
+### LOGIN
+POST {{host}}/api/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Admin@123"
+}
+
+### USERS - GET ALL
+GET {{host}}/api/users
+
+### USERS - GET BY ID
+GET {{host}}/api/users/1
+
+### USERS - POST (create portal login and link to employee)
+# Step 2: use employeeId from employee POST response
+POST {{host}}/api/users
+Content-Type: application/json
+
+{
+  "userId": 0,
+  "username": "mohamed_abubakar",
+  "email": "mohamed@company.com",
+  "password": "Employee@123",
+  "role": "Employee",
+  "isActive": true,
+  "employeeId": 4
+}
+
+### USERS - PUT
+PUT {{host}}/api/users/6
+Content-Type: application/json
+
+{
+  "userId": 6,
+  "username": "mohamed_abubakar",
+  "email": "mohamed@company.com",
+  "password": "Employee@123",
+  "role": "Employee",
+  "isActive": true,
+  "employeeId": 4
+}
+
+### USERS - DELETE
+DELETE {{host}}/api/users/6
+
+### DEPARTMENTS - GET ALL
+GET {{host}}/api/departments
+
+### DEPARTMENTS - POST
+POST {{host}}/api/departments
+Content-Type: application/json
+
+{
+  "departmentId": 0,
+  "departmentName": "Testing",
+  "description": "Test department"
+}
+
+### DEPARTMENTS - PUT
+PUT {{host}}/api/departments/5
+Content-Type: application/json
+
+{
+  "departmentId": 5,
+  "departmentName": "Testing Updated",
+  "description": "Updated description"
+}
+
+### DEPARTMENTS - DELETE
+DELETE {{host}}/api/departments/5
+
+### EMPLOYEES - GET ALL
+GET {{host}}/api/employees
+
+### EMPLOYEES - POST (Step 1: create employee first, no userId needed)
+POST {{host}}/api/employees
+Content-Type: application/json
+
+{
+  "employeeId": 0,
+  "userId": 0,
+  "departmentId": 2,
+  "employeeCode": "EMP004",
+  "firstName": "Mohamed",
+  "lastName": "Abubakar",
+  "phone": "252618301582",
+  "hireDate": "2022-01-29",
+  "jobTitle": "Full Stack Developer",
+  "departmentName": "Information Technology"
+}
+
+### LEAVE TYPES - GET ALL
+GET {{host}}/api/leavetypes
+
+### LEAVE TYPES - POST
+POST {{host}}/api/leavetypes
+Content-Type: application/json
+
+{
+  "leaveTypeId": 0,
+  "typeName": "Study Leave",
+  "description": "For exams and courses",
+  "maxDaysPerYear": 5,
+  "isPaid": false
+}
+
+### LEAVE REQUESTS - GET ALL
+GET {{host}}/api/leaverequests
+
+### LEAVE REQUESTS - POST
+POST {{host}}/api/leaverequests
+Content-Type: application/json
+
+{
+  "leaveRequestId": 0,
+  "employeeName": "Jane Smith",
+  "leaveTypeName": "Annual Leave",
+  "startDate": "2026-10-01",
+  "endDate": "2026-10-02",
+  "totalDays": 2,
+  "reason": "Doctor appointment",
+  "status": "Pending"
+}
+
+### LEAVE REQUESTS - PUT (approve)
+PUT {{host}}/api/leaverequests/3
+Content-Type: application/json
+
+{
+  "leaveRequestId": 3,
+  "employeeName": "John Doe",
+  "leaveTypeName": "Sick Leave",
+  "startDate": "2026-08-20",
+  "endDate": "2026-08-20",
+  "totalDays": 1,
+  "reason": "Personal work",
+  "status": "Approved",
+  "reviewedByUserId": 2
+}
+
+### LEAVE REQUESTS - DELETE
+DELETE {{host}}/api/leaverequests/4
